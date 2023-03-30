@@ -21,3 +21,9 @@ variable "vm_subnet_id" {
   type        = string
   default     = ""
 }
+
+variable "tags" {
+  description = "Map of tags that will be applied to the VNet"
+  type        = map(string)
+  default     = {}
+}
