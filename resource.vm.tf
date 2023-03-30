@@ -26,16 +26,16 @@ resource "azurerm_linux_virtual_machine" "webserver" {
   computer_name                   = "webserver"
   admin_username                  = "azureuser"
   disable_password_authentication = true
-  custom_data                     = file("custom_data.sh")
+  custom_data                     = filebase64("${path.module}/custom_data.sh")
 
   admin_ssh_key {
     username   = "azureuser"
-    public_key = tls_private_key.ssh_key.public_key_pem
+    public_key = tls_private_key.ssh_key.public_key_openssh
   }
 
-  boot_diagnostics {
-    storage_account_uri = azurerm_storage_account.vmdiag_storage_account.primary_blob_endpoint
-  }
+  #  boot_diagnostics {
+  #    storage_account_uri = azurerm_storage_account.vmdiag_storage_account.primary_blob_endpoint
+  #  }
 }
 
 # Create (and display) an SSH key
@@ -104,10 +104,10 @@ resource "azurerm_network_interface_security_group_association" "example" {
 }
 
 # Create storage account for boot diagnostics
-resource "azurerm_storage_account" "vmdiag_storage_account" {
-  name                     = "diagwebservertginfra"
-  location                 = azurerm_resource_group.rg.location
-  resource_group_name      = azurerm_resource_group.rg.name
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
-}
+#resource "azurerm_storage_account" "vmdiag_storage_account" {
+#  name                     = "diagwebservertginfra"
+#  location                 = azurerm_resource_group.rg.location
+#  resource_group_name      = azurerm_resource_group.rg.name
+#  account_tier             = "Standard"
+#  account_replication_type = "LRS"
+#}
