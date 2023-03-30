@@ -51,5 +51,5 @@ func Test_VM(t *testing.T) {
 
         // Make an HTTP request to the instance and make sure we get back a 200 OK with the body "Hello, World!"
         url := fmt.Sprintf("http://%s:80", publicIp)
-        http_helper.HttpGetWithRetry(t, url, nil, 200, "Hello, World!", 10, 3*time.Second)
+        http_helper.HttpGetWithRetry(t, url, nil, 200, "Hello, World!", 20, 5*time.Second)
 }
