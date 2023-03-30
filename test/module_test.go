@@ -43,11 +43,11 @@ func Test_Network(t *testing.T) {
     			"vm_subnet_id": outputNetworking["vm_subnet_id"],
     		},
     	})
-    	defer terraform.Destroy(t, terraformOptionsNetworking)
-    	terraform.InitAndApply(t, terraformOptionsNetworking)
+    	defer terraform.Destroy(t, terraformOptionsWebserver)
+    	terraform.InitAndApply(t, terraformOptionsWebserver)
 
     	// Run `terraform output` to get the IP of the instance
-        publicIp := terraform.Output(t, terraformOptions, "public_ip")
+        publicIp := terraform.Output(t, terraformOptionsWebserver, "public_ip")
 
         // Make an HTTP request to the instance and make sure we get back a 200 OK with the body "Hello, World!"
         url := fmt.Sprintf("http://%s:80", publicIp)

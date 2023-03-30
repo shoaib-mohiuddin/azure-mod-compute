@@ -26,14 +26,7 @@ resource "azurerm_linux_virtual_machine" "webserver" {
   computer_name                   = "webserver"
   admin_username                  = "azureuser"
   disable_password_authentication = true
-  custom_data                     = <<EOF
-#! /bin/bash
-sudo apt-get update
-sudo apt-get install -y apache2
-echo <h1>Hello, World!</h1> > /var/www/html/index.html
-sudo service start apache2
-sudo service enable apache2
-EOF
+  custom_data                     = file("custom_data.sh")
 
   admin_ssh_key {
     username   = "azureuser"
