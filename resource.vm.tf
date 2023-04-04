@@ -8,7 +8,7 @@ resource "azurerm_linux_virtual_machine" "webserver" {
   location              = azurerm_resource_group.rg.location
   resource_group_name   = azurerm_resource_group.rg.name
   network_interface_ids = [azurerm_network_interface.webserver_nic.id]
-  size                  = "Standard_DS1_v2"
+  size                  = var.vm_size
 
   os_disk {
     name                 = "myOsDisk"

@@ -44,6 +44,7 @@ No modules.
 | rg\_name | name of the resource group | `string` | `""` | no |
 | tags | Map of tags that will be applied to the VNet | `map(string)` | `{}` | no |
 | vm\_name | name of the virtual machine | `string` | `"webserver"` | no |
+| vm\_size | size of the virtual machine | `string` | n/a | yes |
 | vm\_subnet\_id | subnet id to deploy the vm | `string` | `""` | no |
 
 ## Outputs

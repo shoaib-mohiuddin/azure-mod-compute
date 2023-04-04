@@ -16,6 +16,11 @@ variable "vm_name" {
   default     = "webserver"
 }
 
+variable "vm_size" {
+  description = "size of the virtual machine"
+  type        = string
+}
+
 variable "vm_subnet_id" {
   description = "subnet id to deploy the vm"
   type        = string
