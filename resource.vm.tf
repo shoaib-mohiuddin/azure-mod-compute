@@ -46,7 +46,7 @@ resource "tls_private_key" "ssh_key" {
 
 # Create network interface
 resource "azurerm_network_interface" "webserver_nic" {
-  name                = "WebNIC"
+  name                = "${var.vm_name}-NIC"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
@@ -60,7 +60,7 @@ resource "azurerm_network_interface" "webserver_nic" {
 
 # Create public IPs
 resource "azurerm_public_ip" "web_public_ip" {
-  name                = "WebPublicIP"
+  name                = "${var.vm_name}-PublicIP"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   allocation_method   = "Dynamic"
@@ -68,7 +68,7 @@ resource "azurerm_public_ip" "web_public_ip" {
 
 # Create Network Security Group and rule
 resource "azurerm_network_security_group" "nsg" {
-  name                = "WebserverNSG"
+  name                = "${var.vm_name}-NSG"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
