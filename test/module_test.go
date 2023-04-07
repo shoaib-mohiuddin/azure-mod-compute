@@ -47,9 +47,9 @@ func Test_VM(t *testing.T) {
     	terraform.InitAndApply(t, terraformOptionsWebserver)
 
     	// Run `terraform output` to get the IP of the instance
-        publicIp := terraform.Output(t, terraformOptionsWebserver, "public_ip")
+        outputWebserver := terraform.Output(t, terraformOptionsWebserver, "public_ip")
 
         // Make an HTTP request to the instance and make sure we get back a 200 OK with the body "Hello, World!"
-        url := fmt.Sprintf("http://%s:80", publicIp)
+        url := fmt.Sprintf("http://%s:80", outputWebserver)
         http_helper.HttpGetWithRetry(t, url, nil, 200, "<center><h1>Hello, World!</h1><br/></center>", 20, 5*time.Second)
 }
